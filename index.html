@@ -1,0 +1,23 @@
+<script>
+const PASSWORD_HASH = "23167e90a75aa5994ae111196d08e1b4930cd183dcfa787b12c01eafff6755d9";
+
+async function sha256(text) {
+  const data = new TextEncoder().encode(text);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+async function checkPassword() {
+  const input = document.getElementById("password").value;
+  const hash = await sha256(input);
+
+  if (hash === PASSWORD_HASH) {
+    localStorage.setItem("auth", "true");
+    window.location.href = "router.html";
+  } else {
+    document.getElementById("error").innerText = "Not quite… try again 💭";
+  }
+}
+</script>

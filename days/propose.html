@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propose Day 💍</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Lottie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    body {
+      background: linear-gradient(180deg, #fbd3e9, #bb377d);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 420px;
+      text-align: center;
+      padding-bottom: 180px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.2);
+      border-radius: 22px;
+      padding: 26px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+      animation: rise 1.2s ease forwards;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-top: 18px;
+    }
+
+    .heartbeat {
+      margin: 22px auto 0;
+      font-size: 2rem;
+      animation: beat 1.4s infinite;
+    }
+
+    @keyframes beat {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.2); }
+      60% { transform: scale(1); }
+    }
+
+    .next-btn {
+      margin-top: 32px;
+      padding: 14px 34px;
+      font-size: 1rem;
+      border-radius: 16px;
+      border: none;
+      background: #ff4f81;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      transition: transform 0.2s;
+    }
+
+    .next-btn:hover {
+      transform: scale(1.06);
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      width: 18px;
+      opacity: 0.6;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(110vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+    /* Cats */
+    .cats {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 70px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .cat {
+      width: 125px;
+      height: 125px;
+    }
+  </style>
+</head>
+
+<body class="center">
+
+<!-- 🔒 DATE GUARD -->
+<script>
+  if (Date.now() < new Date("Feb 8, 2026 00:00:00").getTime()) {
+    window.location.href = "../countdown.html";
+  }
+</script>
+
+<div class="container">
+  <h1>💍 Propose Day</h1>
+  <p class="subtitle">This part makes my heart race</p>
+
+  <div class="card">
+    <div id="ringAnim" style="width:140px;margin:auto;"></div>
+
+    <p class="message">
+      I’ve thought about this more times than I can count.<br><br>
+      So here it is — simple, honest, and real.<br><br>
+      Would you walk through life with me,<br>
+      not just today, but every tomorrow? 💖
+    </p>
+
+    <div class="heartbeat">❤️</div>
+  </div>
+
+  <button class="next-btn" onclick="location.href='../router.html'">
+    Next →
+  </button>
+</div>
+
+<!-- 💕 Floating hearts -->
+<script>
+  for (let i = 0; i < 14; i++) {
+    const heart = document.createElement("img");
+    heart.src = "https://cdn-icons-png.flaticon.com/512/833/833472.png";
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (6 + Math.random() * 10) + "s";
+    heart.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(heart);
+  }
+</script>
+
+<!-- 🐱 Kawaii Cats -->
+<div class="cats">
+  <div id="cat-left" class="cat"></div>
+  <div id="cat-right" class="cat"></div>
+</div>
+
+<script>
+  // Ring animation
+  lottie.loadAnimation({
+    container: document.getElementById("ringAnim"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets3.lottiefiles.com/packages/lf20_kkflmtur.json"
+  });
+
+  // Cats (supportive + shy)
+  lottie.loadAnimation({
+    container: document.getElementById("cat-left"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets10.lottiefiles.com/packages/lf20_kzyz1bov.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("cat-right"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets10.lottiefiles.com/packages/lf20_ovbq7wpv.json"
+  });
+</script>
+
+</body>
+</html>

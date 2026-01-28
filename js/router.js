@@ -1,0 +1,16 @@
+if (localStorage.getItem("auth") !== "true") {
+  window.location.href = "index.html";
+}
+
+const now = Date.now();
+
+for (let day of SCHEDULE) {
+  const unlock = new Date(day.date).getTime();
+  if (now < unlock) {
+    window.location.href = "countdown.html";
+    return;
+  }
+}
+
+// If all unlocked
+window.location.href = "days/valentine.html";

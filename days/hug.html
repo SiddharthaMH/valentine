@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hug Day 🤗</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Lottie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, #fde2e4, #fadadd);
+      color: #4a2c2a;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: auto;
+      text-align: center;
+      padding: 44px 18px 230px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.6rem;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.75);
+      border-radius: 28px;
+      padding: 30px 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+      animation: rise 1.2s ease forwards;
+    }
+
+    @keyframes rise {
+      from { transform: translateY(35px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .hug-text {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-top: 18px;
+    }
+
+    .hug-btn {
+      margin-top: 28px;
+      padding: 15px 38px;
+      border-radius: 34px;
+      border: none;
+      background: #ff7a8a;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+      transition: transform 0.2s;
+    }
+
+    .hug-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .hug-hidden {
+      margin-top: 22px;
+      font-size: 0.95rem;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+
+    .hug-hidden.show {
+      opacity: 1;
+    }
+
+    /* Floating blush hearts */
+    .heart {
+      position: absolute;
+      width: 16px;
+      opacity: 0.7;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-20vh); }
+    }
+
+    /* Bottom characters */
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .char {
+      width: 150px;
+      height: 150px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🔒 DATE GUARD -->
+<script>
+  if (Date.now() < new Date("Feb 12, 2026 00:00:00").getTime()) {
+    window.location.href = "../countdown.html";
+  }
+</script>
+
+<div class="container">
+  <h1>🤗 Hug Day</h1>
+  <p class="subtitle">Stay. Just like this.</p>
+
+  <div class="card">
+    <div id="hugAnim" style="width:190px;margin:auto;"></div>
+
+    <p class="hug-text">
+      A hug doesn’t fix everything.<br>
+      But sometimes… it’s enough.<br><br>
+      If I were there right now,<br>
+      I’d pull you close —  
+      and not let go 🤍
+    </p>
+
+    <button class="hug-btn" onclick="hug()">
+      Hold me 🤍
+    </button>
+
+    <div id="hugHidden" class="hug-hidden">
+      This hug is quiet, warm,<br>
+      and exactly where you belong.
+    </div>
+  </div>
+
+  <button class="hug-btn" style="margin-top:36px;" onclick="location.href='../router.html'">
+    Next →
+  </button>
+</div>
+
+<!-- Floating hearts -->
+<script>
+  for (let i = 0; i < 22; i++) {
+    const heart = document.createElement("img");
+    heart.src = "https://cdn-icons-png.flaticon.com/512/833/833472.png";
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (7 + Math.random() * 7) + "s";
+    heart.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(heart);
+  }
+
+  function hug() {
+    document.getElementById("hugHidden").classList.add("show");
+  }
+</script>
+
+<!-- 🤗 Bottom animation -->
+<div class="bottom">
+  <div id="hugBottom1" class="char"></div>
+  <div id="hugBottom2" class="char"></div>
+</div>
+
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById("hugAnim"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets1.lottiefiles.com/packages/lf20_fy5qf3p0.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("hugBottom1"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets10.lottiefiles.com/packages/lf20_5ngs2ksb.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("hugBottom2"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets10.lottiefiles.com/packages/lf20_5ngs2ksb.json"
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiss Day 💋</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Lottie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, #1f1b24, #3a1c3d);
+      color: #f6e9f5;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: auto;
+      text-align: center;
+      padding: 46px 18px 240px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 32px 26px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+      animation: fadeIn 1.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .kiss-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-top: 18px;
+    }
+
+    .kiss-btn {
+      margin-top: 30px;
+      padding: 15px 42px;
+      border-radius: 36px;
+      border: none;
+      background: #d46aa0;
+      color: #1f1b24;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+      transition: transform 0.2s;
+    }
+
+    .kiss-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .kiss-hidden {
+      margin-top: 22px;
+      font-size: 0.95rem;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .kiss-hidden.show {
+      opacity: 1;
+    }
+
+    /* Floating lights */
+    .light {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 50%;
+      animation: floatSlow linear infinite;
+    }
+
+    @keyframes floatSlow {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-15vh); }
+    }
+
+    /* Bottom couple */
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .char {
+      width: 160px;
+      height: 160px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🔒 DATE GUARD -->
+<script>
+  if (Date.now() < new Date("Feb 13, 2026 00:00:00").getTime()) {
+    window.location.href = "../countdown.html";
+  }
+</script>
+
+<div class="container">
+  <h1>💋 Kiss Day</h1>
+  <p class="subtitle">Some moments don’t need words</p>
+
+  <div class="card">
+    <div id="kissAnim" style="width:200px;margin:auto;"></div>
+
+    <p class="kiss-text">
+      There’s a moment<br>
+      right before a kiss —<br>
+      where the world slows down.<br><br>
+      That’s my favourite part.<br>
+      Because in that second,<br>
+      it’s just you and me.
+    </p>
+
+    <button class="kiss-btn" onclick="revealKiss()">
+      Come closer 💗
+    </button>
+
+    <div id="kissHidden" class="kiss-hidden">
+      If I kissed you right now,<br>
+      it wouldn’t be rushed.<br>
+      It would be soft… and full of meaning.
+    </div>
+  </div>
+
+  <button class="kiss-btn" style="margin-top:38px;" onclick="location.href='../router.html'">
+    Next →
+  </button>
+</div>
+
+<!-- Floating lights -->
+<script>
+  for (let i = 0; i < 28; i++) {
+    const l = document.createElement("div");
+    l.className = "light";
+    l.style.left = Math.random() * 100 + "vw";
+    l.style.animationDuration = (12 + Math.random() * 10) + "s";
+    l.style.animationDelay = Math.random() * 6 + "s";
+    document.body.appendChild(l);
+  }
+
+  function revealKiss() {
+    document.getElementById("kissHidden").classList.add("show");
+  }
+</script>
+
+<!-- 💋 Bottom animation -->
+<div class="bottom">
+  <div id="couple1" class="char"></div>
+  <div id="couple2" class="char"></div>
+</div>
+
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById("kissAnim"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets9.lottiefiles.com/packages/lf20_gzl797gs.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("couple1"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets2.lottiefiles.com/packages/lf20_qp1q7mct.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("couple2"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets2.lottiefiles.com/packages/lf20_qp1q7mct.json"
+  });
+</script>
+
+</body>
+</html>

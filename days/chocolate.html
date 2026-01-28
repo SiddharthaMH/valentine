@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chocolate Day 🍫</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Lottie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #3e1f0f, #6b2f1a);
+      color: #fff5ee;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: auto;
+      text-align: center;
+      padding: 40px 18px 190px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.6rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      border-radius: 22px;
+      padding: 26px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+      animation: pop 1s ease forwards;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .message {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-top: 18px;
+    }
+
+    .choco-btn {
+      margin-top: 24px;
+      padding: 14px 32px;
+      border-radius: 18px;
+      border: none;
+      background: #ff8c42;
+      color: #3e1f0f;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+      transition: transform 0.2s;
+    }
+
+    .choco-btn:hover {
+      transform: scale(1.06);
+    }
+
+    .hidden-text {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .hidden-text.show {
+      opacity: 1;
+    }
+
+    /* Floating chocolates */
+    .choco {
+      position: absolute;
+      width: 26px;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-10vh); }
+      to { transform: translateY(110vh); }
+    }
+
+    /* Cats */
+    .cats {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .cat {
+      width: 130px;
+      height: 130px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🔒 DATE GUARD -->
+<script>
+  if (Date.now() < new Date("Feb 9, 2026 00:00:00").getTime()) {
+    window.location.href = "../countdown.html";
+  }
+</script>
+
+<div class="container">
+  <h1>🍫 Chocolate Day</h1>
+  <p class="subtitle">Because life is sweeter with you</p>
+
+  <div class="card">
+    <div id="chocoAnim" style="width:160px;margin:auto;"></div>
+
+    <p class="message">
+      Some people like dark chocolate.<br>
+      Some like milk chocolate.<br><br>
+      But I like *you* —  
+      sweet, a little addictive,  
+      and impossible to replace 🤎
+    </p>
+
+    <button class="choco-btn" onclick="reveal()">
+      Tap for a secret 🍬
+    </button>
+
+    <div id="secret" class="hidden-text">
+      If happiness had a flavour,<br>
+      it would taste exactly like moments with you ✨
+    </div>
+  </div>
+
+  <button class="choco-btn" style="margin-top:32px;" onclick="location.href='../router.html'">
+    Next →
+  </button>
+</div>
+
+<!-- 🍫 Floating chocolates -->
+<script>
+  for (let i = 0; i < 16; i++) {
+    const choco = document.createElement("img");
+    choco.src = "https://cdn-icons-png.flaticon.com/512/1046/1046784.png";
+    choco.className = "choco";
+    choco.style.left = Math.random() * 100 + "vw";
+    choco.style.animationDuration = (7 + Math.random() * 8) + "s";
+    choco.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(choco);
+  }
+
+  function reveal() {
+    document.getElementById("secret").classList.add("show");
+  }
+</script>
+
+<!-- 🐱 Kawaii Cats (happy + munching vibes) -->
+<div class="cats">
+  <div id="cat-left" class="cat"></div>
+  <div id="cat-right" class="cat"></div>
+</div>
+
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById("chocoAnim"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets1.lottiefiles.com/packages/lf20_2ks3pjua.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("cat-left"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets10.lottiefiles.com/packages/lf20_xlmz9xwm.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("cat-right"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets10.lottiefiles.com/packages/lf20_3rqwsqnj.json"
+  });
+</script>
+
+</body>
+</html>

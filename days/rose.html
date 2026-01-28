@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rose Day 🌹</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Lottie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    body {
+      background: linear-gradient(180deg, #ffdde1, #ee9ca7);
+      overflow-x: hidden;
+    }
+
+    .rose-container {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      padding-bottom: 160px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.6rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    /* Floating rose petals */
+    .petal {
+      position: absolute;
+      width: 18px;
+      opacity: 0.7;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    /* Rose card */
+    .rose-card {
+      background: rgba(255,255,255,0.18);
+      border-radius: 22px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .rose-message {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    /* Button */
+    .next-btn {
+      margin-top: 28px;
+      padding: 14px 32px;
+      font-size: 1rem;
+      border-radius: 14px;
+      border: none;
+      background: #ff5e8a;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    .next-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Cats */
+    .cats {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .cat {
+      width: 120px;
+      height: 120px;
+    }
+  </style>
+</head>
+
+<body class="center">
+
+<!-- 🔒 DATE GUARD -->
+<script>
+  if (Date.now() < new Date("Feb 7, 2026 00:00:00").getTime()) {
+    window.location.href = "../countdown.html";
+  }
+</script>
+
+<div class="rose-container">
+  <h1>🌹 Rose Day</h1>
+  <p class="subtitle">This one is for you</p>
+
+  <div class="rose-card">
+    <div id="roseAnim" style="width:120px;margin:auto;"></div>
+    <p class="rose-message">
+      If I could give you one thing today,<br>
+      it would be a rose that never fades —<br>
+      just like the way you make my days brighter 🌹
+    </p>
+  </div>
+
+  <button class="next-btn" onclick="location.href='../router.html'">
+    Next →
+  </button>
+</div>
+
+<!-- 🌸 Floating Petals -->
+<script>
+  for (let i = 0; i < 12; i++) {
+    const petal = document.createElement("img");
+    petal.src = "https://cdn-icons-png.flaticon.com/512/833/833472.png";
+    petal.className = "petal";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = (6 + Math.random() * 8) + "s";
+    petal.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(petal);
+  }
+</script>
+
+<!-- 🐱 Kawaii Cats -->
+<div class="cats">
+  <div id="cat-left" class="cat"></div>
+  <div id="cat-right" class="cat"></div>
+</div>
+
+<script>
+  // Rose animation
+  lottie.loadAnimation({
+    container: document.getElementById("roseAnim"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets2.lottiefiles.com/packages/lf20_ysrn2iwp.json"
+  });
+
+  // Cats (adoring)
+  lottie.loadAnimation({
+    container: document.getElementById("cat-left"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets10.lottiefiles.com/packages/lf20_kzyz1bov.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("cat-right"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets10.lottiefiles.com/packages/lf20_ovbq7wpv.json"
+  });
+</script>
+
+</body>
+</html>

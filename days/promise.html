@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise Day 🤞</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Lottie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #f6f3ef, #e8e2d6);
+      color: #3f3a34;
+    }
+
+    .container {
+      max-width: 420px;
+      margin: auto;
+      text-align: center;
+      padding: 42px 18px 210px;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-bottom: 26px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.75);
+      border-radius: 22px;
+      padding: 30px 24px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(25px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .promise-text {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-top: 18px;
+    }
+
+    .promise-btn {
+      margin-top: 28px;
+      padding: 14px 34px;
+      border-radius: 26px;
+      border: none;
+      background: #8b7d6b;
+      color: #fff;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      transition: transform 0.2s;
+    }
+
+    .promise-btn:hover {
+      transform: scale(1.06);
+    }
+
+    .promise-hidden {
+      margin-top: 22px;
+      font-size: 0.95rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .promise-hidden.show {
+      opacity: 1;
+    }
+
+    /* Floating dots (calm ambience) */
+    .dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 50%;
+      animation: floatSlow linear infinite;
+    }
+
+    @keyframes floatSlow {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+    /* Bottom hands */
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .hand {
+      width: 140px;
+      height: 140px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🔒 DATE GUARD -->
+<script>
+  if (Date.now() < new Date("Feb 11, 2026 00:00:00").getTime()) {
+    window.location.href = "../countdown.html";
+  }
+</script>
+
+<div class="container">
+  <h1>🤞 Promise Day</h1>
+  <p class="subtitle">Some things are meant to be kept</p>
+
+  <div class="card">
+    <div id="promiseAnim" style="width:170px;margin:auto;"></div>
+
+    <p class="promise-text">
+      I can’t promise perfection.<br>
+      I can’t promise easy days.<br><br>
+      But I promise honesty.<br>
+      I promise effort.<br>
+      And I promise that you’ll never be alone in this.
+    </p>
+
+    <button class="promise-btn" onclick="revealPromise()">
+      A quiet promise 🤍
+    </button>
+
+    <div id="promiseHidden" class="promise-hidden">
+      No matter how loud the world gets,<br>
+      I’ll choose you — again and again.
+    </div>
+  </div>
+
+  <button class="promise-btn" style="margin-top:34px;" onclick="location.href='../router.html'">
+    Next →
+  </button>
+</div>
+
+<!-- Calm floating dots -->
+<script>
+  for (let i = 0; i < 30; i++) {
+    const dot = document.createElement("div");
+    dot.className = "dot";
+    dot.style.left = Math.random() * 100 + "vw";
+    dot.style.animationDuration = (14 + Math.random() * 10) + "s";
+    dot.style.animationDelay = Math.random() * 6 + "s";
+    document.body.appendChild(dot);
+  }
+
+  function revealPromise() {
+    document.getElementById("promiseHidden").classList.add("show");
+  }
+</script>
+
+<!-- 🤞 Bottom hands -->
+<div class="bottom">
+  <div id="hand1" class="hand"></div>
+  <div id="hand2" class="hand"></div>
+</div>
+
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById("promiseAnim"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets2.lottiefiles.com/packages/lf20_jpxsruum.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("hand1"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets3.lottiefiles.com/packages/lf20_svy4ivvy.json"
+  });
+
+  lottie.loadAnimation({
+    container: document.getElementById("hand2"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "https://assets3.lottiefiles.com/packages/lf20_jtbfg2nb.json"
+  });
+</script>
+
+</body>
+</html>
