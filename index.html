@@ -1,23 +1,49 @@
-<script>
-const PASSWORD_HASH = "23167e90a75aa5994ae111196d08e1b4930cd183dcfa787b12c01eafff6755d9";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Password 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="center">
 
-async function sha256(text) {
-  const data = new TextEncoder().encode(text);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  return Array.from(new Uint8Array(hashBuffer))
-    .map(b => b.toString(16).padStart(2, "0"))
-    .join("");
-}
+  <h1>🔐 A Little Secret</h1>
 
-async function checkPassword() {
-  const input = document.getElementById("password").value;
-  const hash = await sha256(input);
+  <input
+    type="password"
+    id="password"
+    placeholder="Enter the magic word…"
+    style="padding:12px;border-radius:10px;border:none;font-size:1rem;"
+  >
 
-  if (hash === PASSWORD_HASH) {
-    localStorage.setItem("auth", "true");
-    window.location.href = "router.html";
-  } else {
-    document.getElementById("error").innerText = "Not quite… try again 💭";
-  }
-}
-</script>
+  <button onclick="checkPassword()">Unlock 💝</button>
+
+  <p id="error" style="color:#fff;margin-top:12px;"></p>
+
+  <script>
+    const PASSWORD_HASH = "23167e90a75aa5994ae111196d08e1b4930cd183dcfa787b12c01eafff6755d9";
+
+    async function sha256(text) {
+      const data = new TextEncoder().encode(text);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      return Array.from(new Uint8Array(hashBuffer))
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
+    async function checkPassword() {
+      const input = document.getElementById("password").value;
+      const hash = await sha256(input);
+
+      if (hash === PASSWORD_HASH) {
+        localStorage.setItem("auth", "true");
+        window.location.href = "router.html";
+      } else {
+        document.getElementById("error").innerText = "Not quite… try again 💭";
+      }
+    }
+  </script>
+
+</body>
+</html>
