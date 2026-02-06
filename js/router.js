@@ -3,27 +3,22 @@ if (localStorage.getItem("auth") !== "true") {
 }
 
 const now = Date.now();
-let nextDay = null;
 
-// Find FIRST future day for countdown
+// Find CURRENT DAY (today or most recent past day)
+let currentDay = null;
 for (let day of SCHEDULE) {
   const unlock = new Date(day.date).getTime();
-  
-  if (isNaN(unlock)) {
-    console.error("Invalid date:", day);
-    continue;
-  }
-
-  if (now < unlock) {
-    nextDay = day;  // First future day
+  if (now >= unlock) {
+    currentDay = day;
+  } else {
     break;
   }
 }
 
-// If all days passed → Valentine's
-if (!nextDay) {
-  window.location.href = "days/valentine.html";
+// If we have a current day AND it's NOT tomorrow already
+if (currentDay && now < new Date(SCHEDULE[SCHEDULE.indexOf(currentDay) + 1]?.date || Infinity).getTime()) {
+  window.location.href = currentDay.page;
 } else {
-  window.location.href = "countdown.html";  // Show countdown for nextDay
+  // Show countdown for NEXT day
+  window.location.href = "countdown.html";
 }
-
