@@ -13,7 +13,7 @@
   }
 
   const now = Date.now();
-  let redirected = false;
+  let currentDay = null;
 
   for (let day of SCHEDULE) {
     const unlock = new Date(day.date).getTime();
@@ -23,15 +23,17 @@
       continue;
     }
 
-    if (now < unlock) {
-      window.location.href = "countdown.html";
-      redirected = true;
-      break;
+    if (now >= unlock) {
+      currentDay = day;  // Track last unlocked day
+    } else {
+      break;  // First future day stops loop
     }
   }
 
-  if (!redirected) {
-    window.location.href = "days/valentine.html";
+  if (currentDay) {
+    window.location.href = currentDay.page;  // Rose Day: "days/rose.html"
+  } else {
+    window.location.href = "countdown.html";
   }
 </script>
 

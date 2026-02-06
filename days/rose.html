@@ -189,11 +189,11 @@ h1 {
 <body>
 
 <!-- 🔒 DATE GUARD -->
-<script>
-if (Date.now() < new Date("Feb 7, 2026 00:00:00").getTime()) {
-  location.href = "../countdown.html";
-}
-</script>
+  <script>
+  if (Date.now() < new Date("Feb 7, 2026 00:00:00").getTime()) {
+    location.href = "../countdown.html";
+  }
+  </script>
 
 <!-- 🌹 SECTION 1: INTRO -->
 <div class="section">
@@ -204,7 +204,7 @@ if (Date.now() < new Date("Feb 7, 2026 00:00:00").getTime()) {
 <!-- 🌹 SECTION 2: FIRST BOUQUET -->
 <div class="section">
   <div class="photo-card" onclick="this.classList.add('revealed')">
-    <img src="/assets/firstRose.jpeg" alt="First bouquet">
+    <img src="../assets/firstRose.jpeg" alt="First bouquet">
     <div class="tap-hint">Tap this rose 🌹</div>
   </div>
 
@@ -223,16 +223,15 @@ if (Date.now() < new Date("Feb 7, 2026 00:00:00").getTime()) {
   <div class="poem">was you.</div>
 </div>
 
-<!-- 🌹 SECTION 4: SECOND BOUQUET -->
 <section class="rose-memories">
   <h2>Five Moments, One Feeling</h2>
 
   <div class="rose-gallery">
-    <img src="assets/rose1.jpeg" alt="Rose memory 1">
-    <img src="assets/rose2.jpeg" alt="Rose memory 2">
-    <img src="assets/rose3.jpeg" alt="Rose memory 3">
-    <img src="assets/rose4.jpeg" alt="Rose memory 4">
-    <img src="assets/rose5.jpeg" alt="Rose memory 5">
+    <img src="../assets/rose1.jpeg" alt="Rose memory 1">
+    <img src="../assets/rose2.jpeg" alt="Rose memory 2">
+    <img src="../assets/rose3.jpeg" alt="Rose memory 3">
+    <img src="../assets/rose4.jpeg" alt="Rose memory 4">
+    <img src="../assets/rose5.jpeg" alt="Rose memory 5">
   </div>
 
   <p class="rose-text">

@@ -3,14 +3,24 @@ if (localStorage.getItem("auth") !== "true") {
 }
 
 const now = Date.now();
+let currentDay = null;
 
 for (let day of SCHEDULE) {
   const unlock = new Date(day.date).getTime();
-  if (now < unlock) {
-    window.location.href = "countdown.html";
-    return;
+  if (isNaN(unlock)) {
+    console.error("Invalid date:", day);
+    continue;
+  }
+
+  if (now >= unlock) {
+    currentDay = day;
+  } else {
+    break;
   }
 }
 
-// If all unlocked
-window.location.href = "days/valentine.html";
+if (currentDay) {
+  window.location.href = currentDay.page;
+} else {
+  window.location.href = "countdown.html";
+}

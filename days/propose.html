@@ -1,199 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propose Day 💍</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Propose Day 🤍</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Lottie -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <link rel="stylesheet" href="../css/style.css">
+body {
+  background: linear-gradient(to bottom, #0f0f14, #1a1a24);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
 
-  <style>
-    body {
-      background: linear-gradient(180deg, #fbd3e9, #bb377d);
-      overflow-x: hidden;
-    }
+section {
+  padding: 120px 10%;
+}
 
-    .container {
-      max-width: 420px;
-      text-align: center;
-      padding-bottom: 180px;
-    }
+.center { text-align: center; }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      margin-bottom: 12px;
-    }
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
 
-    .subtitle {
-      font-size: 1rem;
-      opacity: 0.85;
-      margin-bottom: 30px;
-    }
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .card {
-      background: rgba(255,255,255,0.2);
-      border-radius: 22px;
-      padding: 26px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-      animation: rise 1.2s ease forwards;
-    }
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+}
 
-    .message {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin-top: 18px;
-    }
+.hero span {
+  margin-top: 20px;
+  display: block;
+  color: #cfcfe8;
+}
 
-    .heartbeat {
-      margin: 22px auto 0;
-      font-size: 2rem;
-      animation: beat 1.4s infinite;
-    }
+/* STORY */
+.story p {
+  max-width: 800px;
+  margin: 30px auto;
+  line-height: 1.8;
+  color: #e4e4f2;
+  font-size: 1.15rem;
+}
 
-    @keyframes beat {
-      0% { transform: scale(1); }
-      30% { transform: scale(1.2); }
-      60% { transform: scale(1); }
-    }
+/* MEMORIES */
+.memories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 30px;
+  margin-top: 60px;
+}
 
-    .next-btn {
-      margin-top: 32px;
-      padding: 14px 34px;
-      font-size: 1rem;
-      border-radius: 16px;
-      border: none;
-      background: #ff4f81;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      transition: transform 0.2s;
-    }
+.memories img {
+  height: 340px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 20px;
+  filter: grayscale(20%);
+  transition: 0.5s;
+}
 
-    .next-btn:hover {
-      transform: scale(1.06);
-    }
+.memories img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
 
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      width: 18px;
-      opacity: 0.6;
-      animation: floatUp linear infinite;
-    }
+/* PAUSE */
+.pause {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #ffd1dc;
+}
 
-    @keyframes floatUp {
-      from { transform: translateY(110vh); }
-      to { transform: translateY(-10vh); }
-    }
+/* PROPOSAL */
+.proposal {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* Cats */
-    .cats {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 70px;
-      pointer-events: none;
-      z-index: 5;
-    }
+.proposal-box {
+  background: rgba(255,255,255,0.05);
+  padding: 60px;
+  border-radius: 30px;
+  max-width: 720px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 80px rgba(255,192,203,0.15);
+  transition: box-shadow 1s ease;
+}
 
-    .cat {
-      width: 125px;
-      height: 125px;
-    }
-  </style>
+.proposal-box.glow {
+  box-shadow: 0 0 120px rgba(255,150,190,0.45);
+}
+
+.proposal-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.proposal-box p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+/* BUTTONS */
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+}
+
+button {
+  padding: 14px 40px;
+  font-size: 1.05rem;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background: linear-gradient(135deg,#ff8fab,#ff5d8f);
+  color: #000;
+}
+
+#noBtn {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  user-select: none;
+}
+
+/* ✅ CARRY BUTTON STYLES - PERFECTLY HIDDEN UNTIL YES */
+#carryBtn {
+  background: linear-gradient(135deg, #ffd1dc, #ff8fab) !important;
+  color: #000 !important;
+  font-weight: 500;
+  padding: 16px 50px !important;
+  border-radius: 40px !important;
+  font-size: 1.05rem !important;
+  margin: 30px auto !important;
+  transition: all 0.6s ease !important;
+}
+
+#carryBtn:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 15px 40px rgba(255, 209, 220, 0.5) !important;
+}
+
+/* FINAL */
+.final {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  margin-top: 30px;
+}
+
+.celebrate {
+  margin-top: 20px;
+  color: #ffd1dc;
+}
+
+/* CANVAS */
+#celebrationCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+</style>
 </head>
 
-<body class="center">
-
-<!-- 🔒 DATE GUARD -->
-<script>
+<body>
+  <!-- <script>
   if (Date.now() < new Date("Feb 8, 2026 00:00:00").getTime()) {
     window.location.href = "../countdown.html";
   }
-</script>
+  </script> -->
 
-<div class="container">
-  <h1>💍 Propose Day</h1>
-  <p class="subtitle">This part makes my heart race</p>
+<canvas id="celebrationCanvas"></canvas>
 
-  <div class="card">
-    <div id="ringAnim" style="width:140px;margin:auto;"></div>
+<section class="hero center fade">
+  <div>
+    <h1>Happyyy Propose Dayyyy!!!😘</h1>
+    <span>Not a question. A feeling.</span>
+  </div>
+</section>
 
-    <p class="message">
-      I’ve thought about this more times than I can count.<br><br>
-      So here it is — simple, honest, and real.<br><br>
-      Would you walk through life with me,<br>
-      not just today, but every tomorrow? 💖
+<section class="story fade">
+  <p>I didn't plan this day with rehearsed lines or perfect words.</p>
+  <p>Somewhere between quiet smiles and random conversations, you became my favorite constant.</p>
+  <p>Loving you never felt loud. It felt right.</p>
+</section>
+
+<section class="fade">
+  <div class="center pause">Some moments deserve to be remembered like this.</div>
+  <div class="memories">
+    <img src="../assets/propose1.jpg">
+    <img src="../assets/propose2.jpg">
+    <img src="../assets/propose3.jpg">
+    <img src="../assets/propose4.jpg">
+    <img src="../assets/propose5.jpg">
+    <img src="../assets/propose6.jpg">
+  </div>
+</section>
+
+<section class="center fade">
+  <div class="pause">And then there's this moment.<br>The one I don't want to rush.</div>
+</section>
+
+<section class="proposal fade">
+  <div class="proposal-box" id="box">
+    <h2>So here I am.</h2>
+
+    <p>
+      Will you let me keep choosing you in the loud days,
+      in the quiet ones, and in everything we haven't reached yet?
     </p>
 
-    <div class="heartbeat">❤️</div>
+    <div class="buttons" id="choiceButtons">
+      <button id="yesBtn">Yes 🤍</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div id="answer" style="display:none;">
+      <p class="final">You've always been my yes.</p>
+      <p class="celebrate">✨ My Heart is Dancinggg Yayyy!!! ✨</p>
+    </div>
+
+    <!-- ✅ CARRY BUTTON - HIDDEN BY DEFAULT -->
+    <button id="carryBtn" style="display: none;" onclick="location.href='../router.html'">
+      Carry this promise forward 💍
+    </button>
+
   </div>
+</section>
 
-  <button class="next-btn" onclick="location.href='../router.html'">
-    Next →
-  </button>
-</div>
-
-<!-- 💕 Floating hearts -->
 <script>
-  for (let i = 0; i < 14; i++) {
-    const heart = document.createElement("img");
-    heart.src = "https://cdn-icons-png.flaticon.com/512/833/833472.png";
-    heart.className = "heart";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (6 + Math.random() * 10) + "s";
-    heart.style.animationDelay = Math.random() * 5 + "s";
-    document.body.appendChild(heart);
+/* FADE OBSERVER */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>e.isIntersecting && e.target.classList.add("show"));
+},{threshold:.2});
+document.querySelectorAll(".fade").forEach(f=>observer.observe(f));
+
+/* ✅ PERFECT YES FUNCTION - CARRY BUTTON APPEARS ONLY HERE */
+function sayYes(){
+  // Hide choice buttons
+  document.getElementById("choiceButtons").style.display = "none";
+  
+  // Show celebration message
+  document.getElementById("answer").style.display = "block";
+  
+  // Glow effect
+  document.getElementById("box").classList.add("glow");
+
+  // ✅ SHOW CARRY BUTTON WITH ANIMATION
+  const carryBtn = document.getElementById("carryBtn");
+  carryBtn.style.display = "block";
+  
+  // Animate entrance
+  carryBtn.style.opacity = "0";
+  carryBtn.style.transform = "scale(0.8) translateY(20px)";
+  
+  setTimeout(() => {
+    carryBtn.style.opacity = "1";
+    carryBtn.style.transform = "scale(1) translateY(0)";
+  }, 100);
+
+  celebrate();
+}
+
+function celebrate(){
+  const canvas = document.getElementById("celebrationCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+
+  const hearts = [...Array(220)].map(()=>({
+    x: Math.random()*canvas.width,
+    y: canvas.height + Math.random()*200,
+    size: Math.random()*8 + 6,
+    speed: Math.random()*1.5 + 0.5,
+    alpha: 1
+  }));
+
+  function drawHeart(x, y, s) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.bezierCurveTo(x-s, y-s, x-2*s, y+s, x, y+2*s);
+    ctx.bezierCurveTo(x+2*s, y+s, x+s, y-s, x, y);
+    ctx.fill();
   }
-</script>
 
-<!-- 🐱 Kawaii Cats -->
-<div class="cats">
-  <div id="cat-left" class="cat"></div>
-  <div id="cat-right" class="cat"></div>
-</div>
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hearts.forEach(h => {
+      ctx.globalAlpha = h.alpha;
+      ctx.fillStyle = "#ff8fab";
+      drawHeart(h.x, h.y, h.size);
+      h.y -= h.speed;
+      h.alpha -= 0.004;
+    });
+    if (hearts[0].alpha > 0) requestAnimationFrame(animate);
+  }
+  animate();
+}
 
-<script>
-  // Ring animation
-  lottie.loadAnimation({
-    container: document.getElementById("ringAnim"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets3.lottiefiles.com/packages/lf20_kkflmtur.json"
-  });
+const noBtn = document.getElementById("noBtn");
+function escapeNo(e) {
+  e.preventDefault();
+  const x = Math.random()*220 - 60;
+  const y = Math.random()*180 - 40;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+noBtn.addEventListener("touchstart", escapeNo, {passive: false});
+noBtn.addEventListener("mousedown", escapeNo);
 
-  // Cats (supportive + shy)
-  lottie.loadAnimation({
-    container: document.getElementById("cat-left"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets10.lottiefiles.com/packages/lf20_kzyz1bov.json"
-  });
 
-  lottie.loadAnimation({
-    container: document.getElementById("cat-right"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets10.lottiefiles.com/packages/lf20_ovbq7wpv.json"
-  });
+document.getElementById("yesBtn").addEventListener("click", sayYes);
 </script>
 
 </body>
