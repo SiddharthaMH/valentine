@@ -8,8 +8,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Pacifico&display=swap" rel="stylesheet">
 
-  <!-- Lottie -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+  
 
   <style>
     body {
@@ -88,53 +87,154 @@
       opacity: 1;
     }
 
-    /* Floating chocolates */
-    .choco {
-      position: absolute;
-      width: 26px;
-      opacity: 0.8;
-      animation: fall linear infinite;
-    }
+    .couple-section {
+  margin-top: 50px;
+  padding: 20px;
+}
 
-    @keyframes fall {
-      from { transform: translateY(-10vh); }
-      to { transform: translateY(110vh); }
-    }
+.chat {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
-    /* Cats */
-    .cats {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      pointer-events: none;
-      z-index: 5;
-    }
+.bubble {
+  max-width: 80%;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  position: relative;
+}
 
-    .cat {
-      width: 130px;
-      height: 130px;
-    }
+.bubble.me {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.2);
+  border-radius: 16px 16px 16px 4px;
+}
+
+.bubble.me::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  bottom: 8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid rgba(255,255,255,0.2);
+}
+
+.bubble.her {
+  align-self: flex-end;
+  background: rgba(255,255,255,0.32);
+  border-radius: 16px 16px 4px 16px;
+}
+
+.bubble.her::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  bottom: 8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid rgba(255,255,255,0.32);
+}
+
+/* ===== Conversation Component ===== */
+.convo-wrapper {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.convo-photo {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+  margin-bottom: 18px;
+}
+
+.convo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.speech {
+  max-width: 78%;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  position: relative;
+  backdrop-filter: blur(6px);
+}
+
+/* YOU */
+.speech.me {
+  top: -230px;
+  left: 300px;
+  align-self: flex-start;
+  background: rgba(255,255,255,0.22);
+  border-radius: 16px 16px 16px 6px;
+}
+
+.speech.me::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  bottom: 1px;
+  width: 0px;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 9px solid rgba(255,255,255,0.22);
+}
+
+/* HER */
+.speech.her {
+  left: -320px;
+  top: -340px;
+  align-self: flex-end;
+  background: rgba(255,255,255,0.34);
+  border-radius: 16px 16px 6px 16px;
+}
+
+.speech.her::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  bottom: 10px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 9px solid rgba(255,255,255,0.34);
+}
+
+
+   
+
   </style>
 </head>
 
 <body>
 
 <!-- 🔒 DATE GUARD -->
-<script>
+<!-- <script>
   if (Date.now() < new Date("Feb 9, 2026 00:00:00").getTime()) {
     window.location.href = "../countdown.html";
   }
-</script>
+</script> -->
 
 <div class="container">
-  <h1>🍫 Chocolate Day</h1>
-  <p class="subtitle">Because life is sweeter with you</p>
+  <h1> Chocolate Dayyyy !!!</h1>
+  <p class="subtitle">🍫Because life is sweeter with you</p>
 
   <div class="card">
-    <div id="chocoAnim" style="width:160px;margin:auto;"></div>
+    <div id="chocoAnim" style="width:370px; margin:auto -1px; border-radius: 6px;"><img style="border-radius: 10px; width: 370px; right: 70px;" src="../assets/chocolate_girl.png" alt="Chocolate"></div>
 
     <p class="message">
       Some people like dark chocolate.<br>
@@ -149,64 +249,49 @@
     </button>
 
     <div id="secret" class="hidden-text">
-      If happiness had a flavour,<br>
-      it would taste exactly like moments with you ✨
+      <b style="font-size: 20px;">Secret unlockeddd !!! 🔓</b>  <br>
+      <br>
+      I’d still choose you  <br>
+      even if chocolate didn’t exist. 😁
     </div>
   </div>
 
-  <button class="choco-btn" style="margin-top:32px;" onclick="location.href='../router.html'">
+  <!-- ===== US CONVERSATION BLOCK ===== -->
+<div class="convo-wrapper" style="margin-top: 70px;">
+
+  <img
+    src="../assets/chocolate_us.png"
+    alt="Us together"
+    class="convo-photo"
+  >
+
+  <div class="convo">
+    <div class="speech me">
+      Maybe because some things are meant to blend perfectly. 🤎
+    </div>
+
+    <div class="speech her">
+      Even chocolate tried to melt us together… and honestly, it succeeded.
+    </div>
+  </div>
+
+</div>
+
+
+  <button class="choco-btn" style="margin-top:32px;" onclick="location.href='/valentine/days/teddy.html'">
     Next →
   </button>
 </div>
 
 <!-- 🍫 Floating chocolates -->
 <script>
-  for (let i = 0; i < 16; i++) {
-    const choco = document.createElement("img");
-    choco.src = "https://cdn-icons-png.flaticon.com/512/1046/1046784.png";
-    choco.className = "choco";
-    choco.style.left = Math.random() * 100 + "vw";
-    choco.style.animationDuration = (7 + Math.random() * 8) + "s";
-    choco.style.animationDelay = Math.random() * 5 + "s";
-    document.body.appendChild(choco);
-  }
+  
 
   function reveal() {
     document.getElementById("secret").classList.add("show");
   }
 </script>
 
-<!-- 🐱 Kawaii Cats (happy + munching vibes) -->
-<div class="cats">
-  <div id="cat-left" class="cat"></div>
-  <div id="cat-right" class="cat"></div>
-</div>
-
-<script>
-  lottie.loadAnimation({
-    container: document.getElementById("chocoAnim"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets1.lottiefiles.com/packages/lf20_2ks3pjua.json"
-  });
-
-  lottie.loadAnimation({
-    container: document.getElementById("cat-left"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets10.lottiefiles.com/packages/lf20_xlmz9xwm.json"
-  });
-
-  lottie.loadAnimation({
-    container: document.getElementById("cat-right"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets10.lottiefiles.com/packages/lf20_3rqwsqnj.json"
-  });
-</script>
 
 </body>
 </html>
