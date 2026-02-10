@@ -1,210 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promise Day 🤞</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Promise Day 🤍</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Lottie -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(180deg, #f6f3ef, #e8e2d6);
-      color: #3f3a34;
-    }
+body {
+  background: linear-gradient(to bottom, #0f172a, #1e293b);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
 
-    .container {
-      max-width: 420px;
-      margin: auto;
-      text-align: center;
-      padding: 42px 18px 210px;
-    }
+section {
+  padding: 120px 10%;
+}
 
-    h1 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
+.center { text-align: center; }
 
-    .subtitle {
-      font-size: 0.95rem;
-      opacity: 0.8;
-      margin-bottom: 26px;
-    }
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
 
-    .card {
-      background: rgba(255,255,255,0.75);
-      border-radius: 22px;
-      padding: 30px 24px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.15);
-      animation: fadeUp 1.2s ease forwards;
-    }
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    @keyframes fadeUp {
-      from { transform: translateY(25px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .promise-text {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.02rem;
-      line-height: 1.8;
-      margin-top: 18px;
-    }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+}
 
-    .promise-btn {
-      margin-top: 28px;
-      padding: 14px 34px;
-      border-radius: 26px;
-      border: none;
-      background: #8b7d6b;
-      color: #fff;
-      font-size: 0.95rem;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      transition: transform 0.2s;
-    }
+.hero span {
+  display: block;
+  margin-top: 18px;
+  font-size: 1.1rem;
+  color: #cbd5f5;
+}
 
-    .promise-btn:hover {
-      transform: scale(1.06);
-    }
+/* LETTER */
+.letter {
+  max-width: 820px;
+  margin: auto;
+  font-size: 1.18rem;
+  line-height: 1.9;
+  color: #e5e7eb;
+}
 
-    .promise-hidden {
-      margin-top: 22px;
-      font-size: 0.95rem;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
+.letter p {
+  margin-bottom: 30px;
+}
 
-    .promise-hidden.show {
-      opacity: 1;
-    }
+/* PROMISE CARD */
+.promise-wrap {
+  display: flex;
+  justify-content: center;
+}
 
-    /* Floating dots (calm ambience) */
-    .dot {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: rgba(0,0,0,0.08);
-      border-radius: 50%;
-      animation: floatSlow linear infinite;
-    }
+.promise {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 30px;
+  padding: 60px;
+  max-width: 760px;
+  box-shadow: 0 0 90px rgba(120,150,255,0.15);
+}
 
-    @keyframes floatSlow {
-      from { transform: translateY(100vh); }
-      to { transform: translateY(-10vh); }
-    }
+.promise h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  margin-bottom: 35px;
+  text-align: center;
+}
 
-    /* Bottom hands */
-    .bottom {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      z-index: 5;
-      pointer-events: none;
-    }
+.promise ul {
+  list-style: none;
+}
 
-    .hand {
-      width: 140px;
-      height: 140px;
-    }
-  </style>
+.promise li {
+  margin-bottom: 26px;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  position: relative;
+  padding-left: 28px;
+}
+
+.promise li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: #93c5fd;
+}
+
+/* SOFT LINE */
+.soft {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.1rem;
+  color: #bfdbfe;
+  text-align: center;
+}
+
+/* FINAL */
+.final {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.sub {
+  margin-top: 18px;
+  font-size: 1.1rem;
+  color: #c7d2fe;
+}
+
+.next {
+  margin-top: 40px;
+  padding: 14px 36px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(135deg, #93c5fd, #60a5fa);
+  color: #0f172a;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
 
-<!-- 🔒 DATE GUARD -->
-<script>
+  <script>
   if (Date.now() < new Date("Feb 11, 2026 00:00:00").getTime()) {
     window.location.href = "../countdown.html";
   }
 </script>
 
-<div class="container">
-  <h1>🤞 Promise Day</h1>
-  <p class="subtitle">Some things are meant to be kept</p>
+<!-- HERO -->
+<section class="hero center fade">
+  <div>
+    <h1>Promise Dayyy!!</h1>
+    <span>My chintu promises....</span>
+  </div>
+</section>
 
-  <div class="card">
-    <div id="promiseAnim" style="width:170px;margin:auto;"></div>
-
-    <p class="promise-text">
-      I can’t promise perfection.<br>
-      I can’t promise easy days.<br><br>
-      But I promise honesty.<br>
-      I promise effort.<br>
-      And I promise that you’ll never be alone in this.
+<!-- LETTER -->
+<section class="fade">
+  <div class="letter">
+    <p>
+      I used to think promises were about the future.
     </p>
 
-    <button class="promise-btn" onclick="revealPromise()">
-      A quiet promise 🤍
-    </button>
+    <p>
+       Now I think they’re just about showing up.
+    </p>
 
-    <div id="promiseHidden" class="promise-hidden">
-      No matter how loud the world gets,<br>
-      I’ll choose you — again and again.
+    <p>
+      Even when it’s hard. Even when I don’t know what to say.
+    </p>
+  </div>
+</section>
+
+<!-- PROMISES -->
+<section class="fade">
+  <div class="promise-wrap">
+    <div class="promise">
+      <h2>So here’s what I promise you.</h2>
+
+      <ul>
+        <li>
+          I’ll choose you not just when it’s easy, but when it takes effort.
+        </li>
+
+        <li>
+         I’ll listen, even when I don’t get it right away.
+        </li>
+
+        <li>
+         I’ll be honest, even when that’s uncomfortable.
+        </li>
+
+        <li>
+          I’ll be gentle with your softness and never treat it lightly.
+        </li>
+
+        <li>
+          And if we ever lose our way, I won’t stop trying to find us again.
+        </li>
+      </ul>
     </div>
   </div>
+</section>
 
-  <button class="promise-btn" style="margin-top:34px;" onclick="location.href='../router.html'">
-    Next →
-  </button>
-</div>
+<!-- SOFT LINE -->
+<section class="fade">
+  <div class="soft">
+    Not perfect promises.
+    <br>
+    Just real ones.
+  </div>
+</section>
 
-<!-- Calm floating dots -->
+<!-- FINAL -->
+<section class="fade">
+  <div class="final">
+    I don’t promise forever
+  </div>
+
+  <div class="sub center">
+    I promise today.<br>
+    And then I’ll promise again tomorrow.
+  </div>
+
+  <div class="center" style="margin-top:50px;">
+    <div style="
+      font-family:'Playfair Display', serif;
+      font-size:2.6rem;
+      color:#ffffff;
+    ">
+      I love youuu
+    </div>
+
+    <button class="next" onclick="location.href='/valentine/days/hug.html'">
+      Carry this promise forward 🤍
+    </button>
+  </div>
+</section>
+
+
 <script>
-  for (let i = 0; i < 30; i++) {
-    const dot = document.createElement("div");
-    dot.className = "dot";
-    dot.style.left = Math.random() * 100 + "vw";
-    dot.style.animationDuration = (14 + Math.random() * 10) + "s";
-    dot.style.animationDelay = Math.random() * 6 + "s";
-    document.body.appendChild(dot);
-  }
-
-  function revealPromise() {
-    document.getElementById("promiseHidden").classList.add("show");
-  }
-</script>
-
-<!-- 🤞 Bottom hands -->
-<div class="bottom">
-  <div id="hand1" class="hand"></div>
-  <div id="hand2" class="hand"></div>
-</div>
-
-<script>
-  lottie.loadAnimation({
-    container: document.getElementById("promiseAnim"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets2.lottiefiles.com/packages/lf20_jpxsruum.json"
-  });
-
-  lottie.loadAnimation({
-    container: document.getElementById("hand1"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets3.lottiefiles.com/packages/lf20_svy4ivvy.json"
-  });
-
-  lottie.loadAnimation({
-    container: document.getElementById("hand2"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "https://assets3.lottiefiles.com/packages/lf20_jtbfg2nb.json"
-  });
+const fades = document.querySelectorAll('.fade');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => e.isIntersecting && e.target.classList.add('show'));
+}, { threshold: 0.2 });
+fades.forEach(f => observer.observe(f));
 </script>
 
 </body>
